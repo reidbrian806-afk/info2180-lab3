@@ -21,9 +21,24 @@ document.addEventListener('DOMContentLoaded', function () {
     currentPlayer = (currentPlayer === 'X') ? 'O' : 'X';
   }
 
+  function handleMouseOver(event) {
+    var square = event.currentTarget;
+    var index = parseInt(square.getAttribute('data-index'), 10);
+
+    if (gameState[index] === '' && gameActive) {
+      square.classList.add('hover');
+    }
+  }
+
+  function handleMouseOut(event) {
+    event.currentTarget.classList.remove('hover');
+  }
+
   boardDivs.forEach(function (div, index) {
     div.setAttribute('data-index', index);
     div.addEventListener('click', handleSquareClick);
+    div.addEventListener('mouseover', handleMouseOver);
+    div.addEventListener('mouseout', handleMouseOut);
   });
 
 });
