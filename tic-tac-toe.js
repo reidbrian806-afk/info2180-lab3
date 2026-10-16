@@ -22,6 +22,10 @@ document.addEventListener('DOMContentLoaded', function () {
     var square = event.currentTarget;
     var index = parseInt(square.getAttribute('data-index'), 10);
 
+    if (gameState[index] !== '' || !gameActive) {
+      return;
+    }
+
     gameState[index] = currentPlayer;
     square.textContent = currentPlayer;
     square.classList.add(currentPlayer);
